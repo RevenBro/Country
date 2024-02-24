@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+:root {
+    --body-bg: lightgrey;
+    --color: white;
+}
+
+body {
+    font-family: cursive;
+    background-color: var(--body-bg);
+}
+
+.container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header styles start  */
+
+.site-header {
+    padding: 20px 0;
+    box-shadow: 3px 3px 3px 2px grey;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__logo-link {
+    font-weight: bold;
+    font-size: 25px;
+    color: var(--color);
+    text-shadow: 0 0 4px black;
+}
+
+.header__mode-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.header__heart-btn, .header__basket-btn, .header__mode-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Header styles end */
+
+/* Hero section start  */
+
+.hero-section {
+    padding: 40px 0;
+}
+
+.hero__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero__input, .hero__select {
+    width: 200px;
+    padding: 10px 5px;
+    border-radius: 10px;
+    border: none;
+}
+
+.hero__countries {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.hero__item {
+    width: 350px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.js-btn {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.js-like-btn, .js-basket-btn, .js-more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+}
+
+.js-more-btn span, .js-like-btn span, .js-basket-btn span {
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* Modal start */
+
+.modal-wrapper {
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 60%;
+    height: 50%;
+    background-color: grey;
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.open-modal {
+    display: block;
+}
+
+.modal__img-wrapper {
+    width: 59%;
+}
+
+.modal__img {
+    height: 100%;
+}
+
+.modal__content-wrapper {
+    width: 39%;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+/* Modal end */
