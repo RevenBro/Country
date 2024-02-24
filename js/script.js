@@ -87,7 +87,6 @@ function renderCountry(arr) {
     elItem.classList.add("hero__item")
     elItem.innerHTML = `
     <img class="hero__img" src=${item.img} alt="Country img" width="100%" height="200"/>
-    <b>${item.id}</b>
     <h2 class="hero__name">Country : ${item.name}</h2>
     <p class="hero__population">Population : ${item.population}</p>
     <p class="hero__region">Region : ${item.region}</p>
