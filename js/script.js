@@ -6,7 +6,8 @@ const countries = [
     population: "81,770,900",
     region: "Europe",
     capital: "Berlin",
-    isLike: true
+    isLike: false,
+    isBasket: false
   },
   {
     id: 2,
@@ -15,7 +16,8 @@ const countries = [
     population: "323,947,000",
     region: "Americas",
     capital: "Madrid",
-    isLike: false
+    isLike: false,
+    isBasket: false
   },
   {
     id: 3,
@@ -24,7 +26,8 @@ const countries = [
     population: "206,135,893",
     region: "Americas",
     capital: "Brasília",
-    isLike: true
+    isLike: false,
+    isBasket: false
   },
   {
     id: 4,
@@ -33,7 +36,8 @@ const countries = [
     population: "334,300",
     region: "Europe",
     capital: "Reykjavík",
-    isLike: true
+    isLike: false,
+    isBasket: false
   },
   {
     id: 5,
@@ -42,7 +46,8 @@ const countries = [
     population: "27,657,145",
     region: "Asia",
     capital: "Kabul",
-    isLike: false
+    isLike: false,
+    isBasket: false
   },
   {
     id: 6,
@@ -51,7 +56,8 @@ const countries = [
     population: "35,482,369",
     region: "Asia",
     capital: "Tashkent",
-    isLike: true
+    isLike: false,
+    isBasket: false
   },
   {
     id: 7,
@@ -60,7 +66,8 @@ const countries = [
     population: "2,886,026",
     region: "Europe",
     capital: "Tirana",
-    isLike: false
+    isLike: false,
+    isBasket: false
   },
   {
     id: 8,
@@ -69,13 +76,15 @@ const countries = [
     population: "40,400,000",
     region: "Africa",
     capital: "Algiers",
-    isLike: false
+    isLike: false,
+    isBasket: false
   },
 ]
 
 let elCountryList = document.querySelector(".hero__countries")
 let elSelect = document.querySelector(".hero__select")
 let elModalWrapper = document.querySelector(".modal-wrapper")
+let elInput = document.querySelector(".hero__input")
 let elModal = document.querySelector(".modal")
 
 function renderCountry(arr) {
@@ -91,29 +100,37 @@ function renderCountry(arr) {
     <p class="hero__population">Population : ${item.population}</p>
     <p class="hero__region">Region : ${item.region}</p>
     <p class="hero__capital">Capital : ${item.capital}</p>
-    <div class="js-btn">
 
-    <button id="${item.id}" class="js-like-btn ${item.isLike ? "like" : "dislike"}">
-    <svg class="js-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-    <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
-    </svg>
-    <span>Like</span>
+    <div class="hero__basic-content">
+     <div class="js-btn">
+
+    <button onclick="likeBtnClick(${item.id})" id="${item.id}" class="js-like-btn ${item.isLike ? "like" : "dislike"}">
+     <svg class="js-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+     <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
+     </svg>
+     <span>Like</span>
     </button>
     
-    <button id="${item.id}" class="js-basket-btn">
-    <svg class="js-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
-    </svg>
-    <span>Buy</span>
-    </button>
+    <button id="${item.id}" class="js-basket-btn ${item.isBasket ? "basket" : "unbasket"}" onclick="BasketBtnClick(${item.id})">
+      <svg class="js-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+      <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+      </svg>
+      <span>Buy</span>
+     </button>
 
     <button onclick="MoreBtnClicked(${item.id})" id="${item.id}" class="js-more-btn">
-    <svg class="js-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 12C8 13.1046 7.10457 14 6 14C4.89543 14 4 13.1046 4 12C4 10.8954 4.89543 10 6 10C7.10457 10 8 10.8954 8 12Z" fill="currentColor" /><path d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" fill="currentColor" /><path d="M18 14C19.1046 14 20 13.1046 20 12C20 10.8954 19.1046 10 18 10C16.8954 10 16 10.8954 16 12C16 13.1046 16.8954 14 18 14Z" fill="currentColor" /></svg>
-    <span>More</span>
-    </button>
+      <svg class="js-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 12C8 13.1046 7.10457 14 6 14C4.89543 14 4 13.1046 4 12C4 10.8954 4.89543 10 6 10C7.10457 10 8 10.8954 8 12Z" fill="currentColor" /><path d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" fill="currentColor" /><path d="M18 14C19.1046 14 20 13.1046 20 12C20 10.8954 19.1046 10 18 10C16.8954 10 16 10.8954 16 12C16 13.1046 16.8954 14 18 14Z" fill="currentColor" /></svg>
+      <span>More</span>
+     </button>
 
-    </div>
-    `
+     </div>
+     
+     <div>
+     <button>Update</button>
+     <button>Delete</button>
+     </div>
+     </div>
+     `
     elCountryList.appendChild(elItem)
   })
 }
@@ -168,11 +185,48 @@ elSelect.addEventListener("change", function(evt) {
   }
 })
 
-// Like start -----------------------------------------
-let likeCount = document.querySelector(".like-count")
-function findLike(arr) {
-  const data = arr.filter(item => item.isLike == true)
-  likeCount.textContent = data.length
+// Mode change start ---------------------------------
+let elModeBtn = document.querySelector(".header__mode-btn")
+elModeBtn.addEventListener("click", function(){
+  document.body.classList.toggle("mode")
+})
+// Mode change end ---------------------------------
+
+// Search input start -----------------------------
+elInput.addEventListener("keyup", function(evt) {
+   const inputVal = evt.target.value.trim();
+   const data = countries.filter(item => item.name.toLowerCase().includes(inputVal.toLowerCase()) || item.population.split(",").join("").includes(inputVal));
+   renderCountry(data)
+})
+// Search input end -------------------------------
+
+// Like start ----------------------------------------
+let elLikeCount = document.querySelector(".like-count")
+let elCountWrapperBtn = document.querySelector(".header__heart-btn")
+function likeBtnClick(id) {
+  countries.filter(item => item.id ==  id ? item.isLike = !item.isLike : "")
+  const countFilter = countries.filter(item => item.isLike == true)
+  elLikeCount.textContent = countFilter.length
+  renderCountry(countries)
+
+  elCountWrapperBtn.addEventListener("click", function() {
+    renderCountry(countFilter)
+  })
 }
-findLike(countries)
-// Like end -------------------------------------------
+// Like end ------------------------------------------
+
+// Basket count start --------------------------------
+let elBasketCountBtn = document.querySelector(".header__basket-btn")
+let countBasket = document.querySelector(".basket-count")
+
+function BasketBtnClick(id) {
+  countries.filter(item => item.id ==  id ? item.isBasket = !item.isBasket : "")
+  const countFilter = countries.filter(item => item.isBasket == true)
+  countBasket.textContent = countFilter.length
+  renderCountry(countries)
+
+  elBasketCountBtn.addEventListener("click", function() {
+    renderCountry(countFilter)
+  })
+}
+// Basket count end ----------------------------------

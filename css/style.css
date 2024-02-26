@@ -8,7 +8,12 @@
 
 :root {
     --body-bg: lightgrey;
-    --color: white;
+    --color: black;
+}
+
+.mode {
+    --body-bg: black;
+    --color: lightgrey;
 }
 
 body {
@@ -27,6 +32,9 @@ body {
 .site-header {
     padding: 20px 0;
     box-shadow: 3px 3px 3px 2px grey;
+    position: sticky;
+    top: 0;
+    background-color: var(--body-bg);
 }
 
 .header {
@@ -49,7 +57,7 @@ body {
     gap: 10px;
 }
 
-.header__heart-btn, .header__basket-btn, .header__mode-btn {
+.header__heart-btn, .header__basket-btn, .header__mode-btn, .header__add-country {
     width: 40px;
     height: 40px;
     display: flex;
@@ -57,6 +65,10 @@ body {
     justify-content: center;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.header__add-country {
+    font-weight: bold;
 }
 
 /* Header styles end */
@@ -115,10 +127,29 @@ body {
     padding: 0;
 }
 
+
+
+.dislike{
+    color: green;
+}
+.like {
+    color: red;
+}
+
+.basket {
+    color: goldenrod;
+}
+
 .js-more-btn span, .js-like-btn span, .js-basket-btn span {
     color: #333;
     font-size: 14px;
     font-weight: bold;
+}
+
+.hero__basic-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 
