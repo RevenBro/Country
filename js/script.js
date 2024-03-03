@@ -1,4 +1,4 @@
-const countries = [
+const countries = JSON.parse(window.sessionStorage.getItem("countries")) || [
   {
     id: 1,
     img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/2560px-Flag_of_Germany.svg.png",
@@ -80,6 +80,8 @@ const countries = [
     isBasket: false
   },
 ]
+
+window.sessionStorage.setItem("countries", JSON.stringify(countries))
 
 let elCountryList = document.querySelector(".hero__countries")
 let elSelect = document.querySelector(".hero__select")
@@ -203,30 +205,35 @@ elInput.addEventListener("keyup", function(evt) {
 // Like start ----------------------------------------
 let elLikeCount = document.querySelector(".like-count")
 let elCountWrapperBtn = document.querySelector(".header__heart-btn")
+elLikeCount.textContent = countries.filter(item => item.isLike == true).length
+
 function likeBtnClick(id) {
   countries.filter(item => item.id ==  id ? item.isLike = !item.isLike : "")
-  const countFilter = countries.filter(item => item.isLike == true)
-  elLikeCount.textContent = countFilter.length
+  elLikeCount.textContent = countries.filter(item => item.isLike == true).length
   renderCountry(countries)
-
-  elCountWrapperBtn.addEventListener("click", function() {
-    renderCountry(countFilter)
-  })
+  window.sessionStorage.setItem("countries", JSON.stringify(countries))
+  
 }
+elCountWrapperBtn.addEventListener("click", function() {
+  const countFilter = countries.filter(item => item.isLike == true)
+  renderCountry(countFilter)
+})
 // Like end ------------------------------------------
 
 // Basket count start --------------------------------
 let elBasketCountBtn = document.querySelector(".header__basket-btn")
 let countBasket = document.querySelector(".basket-count")
+countBasket.textContent = countries.filter(item => item.isBasket == true).length
 
 function BasketBtnClick(id) {
   countries.filter(item => item.id ==  id ? item.isBasket = !item.isBasket : "")
-  const countFilter = countries.filter(item => item.isBasket == true)
-  countBasket.textContent = countFilter.length
+  countBasket.textContent = countries.filter(item => item.isBasket == true).length
   renderCountry(countries)
-
-  elBasketCountBtn.addEventListener("click", function() {
-    renderCountry(countFilter)
-  })
+  window.sessionStorage.setItem("countries", JSON.stringify(countries))
+  
 }
+elBasketCountBtn.addEventListener("click", function() {
+  const countFilter = countries.filter(item => item.isBasket == true)
+  renderCountry(countFilter)
+})
 // Basket count end ----------------------------------
